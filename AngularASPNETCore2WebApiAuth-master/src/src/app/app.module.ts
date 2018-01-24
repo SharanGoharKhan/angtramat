@@ -24,7 +24,7 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { GoogleService } from './shared/services/google.service';
-
+import { Angular2SocialLoginModule } from "angular2-social-login";
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +41,8 @@ import { GoogleService } from './shared/services/google.service';
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatToolbarModule
+    MatToolbarModule,
+    Angular2SocialLoginModule
   ],
   providers: [ConfigService, { 
     provide: XHRBackend, 
@@ -50,3 +51,16 @@ import { GoogleService } from './shared/services/google.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+let providers = {
+  "google": {
+    "clientId": "774268296635-tnnv7e7s6n0glrq2fn541o5jbc57ied0.apps.googleusercontent.com"
+  },
+  "linkedin": {
+    "clientId": "LINKEDIN_CLIENT_ID"
+  },
+  "facebook": {
+    "clientId": "FACEBOOK_CLIENT_ID",
+    "apiVersion": "<version>" //like v2.4 
+  }
+};
+Angular2SocialLoginModule.loadProvidersScripts(providers);

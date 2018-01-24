@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Credentials } from '../../shared/models/credentials.interface';
 import { UserService } from '../../shared/services/user.service';
 import { GoogleService } from '../../shared/services/google.service';
-
+import { AuthService } from "angular2-social-login";
 
 @Component({
   selector: 'app-login-form',
@@ -16,7 +16,7 @@ import { GoogleService } from '../../shared/services/google.service';
 export class LoginFormComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
-
+  private sub;
   brandNew: boolean;
   errors: string;
   isRequesting: boolean;
@@ -24,6 +24,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   credentials: Credentials = { email: '', password: '' };
   googleClientId = "";
   constructor(
+    public _auth: AuthService,
     private userService: UserService, 
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -61,4 +62,21 @@ export class LoginFormComponent implements OnInit, OnDestroy {
         error => this.errors = error);
     }
   }
+  signIn(provider){
+    this.sub = this._auth.login(provider).subscribe(
+      (data) => {
+                  console.log(data);
+                  //user data 
+                  //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google) 
+                }
+    )
+  }
+  logout(){
+  //   this._auth.logout().subscribe(
+  //     (data)=>{//return a boolean value.} 
+  //     return true
+  //   )
+  // }
+  }
 }
+

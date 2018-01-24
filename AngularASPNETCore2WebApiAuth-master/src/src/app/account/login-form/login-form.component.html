@@ -12,14 +12,15 @@
                 <div>
                     <button style="border-radius:3%;width:100%;font-weight: 600;color: white;background:orange" mat-raised-button>Create an Account</button>
                 </div>
-                <div style="cursor:pointer;border-radius: 3%;position: absolute;width: 67%;height: 17%;background: #4c8efb;top: 22%;left: 27%;" class="mat-elevation-z6 google-wrapper-1">
+                <!-- <div style="cursor:pointer;border-radius: 3%;position: absolute;width: 67%;height: 17%;background: #4c8efb;top: 22%;left: 27%;" class="mat-elevation-z6 google-wrapper-1">
                     <p style="font-weight: bold;color:white;margin-left: 23%;margin-top: 10%;">Sign up with Google</p>    
-                </div>
+                </div> -->
                 <div style="margin-left: 23%;margin-top:11%" class="google-sign-in-button-wrap">
-                    <google-signin [width]="40" 
+                    <button (click)="signIn('google')">google</button>
+                    <!-- <google-signin [width]="40" 
                     [clientId]="googleClientId"
                     (googleSignInSuccess)="onGoogleSignInSuccess($event)">
-                    </google-signin>
+                    </google-signin> -->
                 </div>
                 <div style="margin-top:1rem;color:gray">
                     <h3>Or</h3>
@@ -51,10 +52,11 @@
                     <button style="border-radius:5%;width:100%;font-weight: 600;color: white;background:orange" mat-raised-button>Existing Account</button>
                 </div>
                 <div style="margin-left: 23%;margin-top:11%" class="google-sign-in-button-wrap">
-                    <google-signin [width]="40" 
+                    <button (click)="signIn('google')">google</button>
+                    <!-- <google-signin [width]="40" 
                     [clientId]="googleClientId"
                     (googleSignInSuccess)="onGoogleSignInSuccess($event)">
-                    </google-signin>
+                    </google-signin> -->
                 </div>
                 <div style="position:absolute;" class="google-wrapper">
 
