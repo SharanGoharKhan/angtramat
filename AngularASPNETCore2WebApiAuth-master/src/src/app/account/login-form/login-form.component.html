@@ -12,18 +12,19 @@
         <form #f="ngForm" novalidate (ngSubmit)="login(f)">
             
             <div class="form-group">
-              <label for="email">Email</label>
-              <input id="email" type="text" required name="email" class="form-control" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
-              <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
+              <mat-form-field>
+                <input matInput id="email" type="text" required name="email" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
+              </mat-form-field>
+                <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid email</small>
             </div>
             <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" required name="password" placeholder="Password" ngModel>
+            <mat-form-field>
+              <input matInput type="password" class="form-control" id="password" required name="password" placeholder="Password" ngModel>
+            </mat-form-field>
             </div>          
   
             <div class="form-group">
-                    <button mat-button>Click me!</button>
-                <button mat-button type="submit" [disabled]="f.invalid || isRequesting">Login buttono</button>
+                <button mat-button type="submit" [disabled]="f.invalid || isRequesting">Login</button>
                 <app-spinner [isRunning]="isRequesting"></app-spinner> 
             </div>
   

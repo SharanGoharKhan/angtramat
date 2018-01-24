@@ -11,11 +11,11 @@ import { routing }  from './account.routing';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule,MatInputModule  } from '@angular/material';
 
 @NgModule({
   imports: [
-    CommonModule,FormsModule,routing,SharedModule,MatButtonModule,MatCheckboxModule
+    CommonModule,FormsModule,routing,SharedModule,MatButtonModule,MatCheckboxModule,MatInputModule 
   ],
   declarations: [RegistrationFormComponent,EmailValidator, LoginFormComponent, FacebookLoginComponent],
   providers:    [ UserService ]
