@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Credentials } from '../../shared/models/credentials.interface';
 import { UserService } from '../../shared/services/user.service';
+import { GoogleService } from '../../shared/services/google.service';
 
 
 @Component({
@@ -21,11 +22,16 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   isRequesting: boolean;
   submitted: boolean = false;
   credentials: Credentials = { email: '', password: '' };
-
-  constructor(private userService: UserService, private router: Router,private activatedRoute: ActivatedRoute) { }
+  googleClientId = "";
+  constructor(
+    private userService: UserService, 
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private googleService: GoogleService) { }
 
     ngOnInit() {
-
+    // Intialize the clientId
+    this.googleClientId = this.googleService.googleClientId;
     // subscribe to router event
     this.subscription = this.activatedRoute.queryParams.subscribe(
       (param: any) => {

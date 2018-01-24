@@ -21,12 +21,15 @@ import { ConfigService } from './shared/utils/config.service';
 /* Angular Material Imports */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+import { GoogleService } from './shared/services/google.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent      
+    HomeComponent    
   ],
   imports: [
     AccountModule,
@@ -37,12 +40,13 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
     routing,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatToolbarModule
   ],
   providers: [ConfigService, { 
     provide: XHRBackend, 
     useClass: AuthenticateXHRBackend
-  }],
+  },GoogleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

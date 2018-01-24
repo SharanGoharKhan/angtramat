@@ -11,13 +11,15 @@ import { routing }  from './account.routing';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
-import { MatButtonModule, MatCheckboxModule,MatInputModule  } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule,MatInputModule,MatCardModule  } from '@angular/material';
+
+import {GoogleSignInComponent} from 'angular-google-signin';
 
 @NgModule({
   imports: [
-    CommonModule,FormsModule,routing,SharedModule,MatButtonModule,MatCheckboxModule,MatInputModule 
+    CommonModule,FormsModule,routing,SharedModule,MatButtonModule,MatCheckboxModule,MatInputModule,MatCardModule 
   ],
-  declarations: [RegistrationFormComponent,EmailValidator, LoginFormComponent, FacebookLoginComponent],
+  declarations: [RegistrationFormComponent,EmailValidator, LoginFormComponent, FacebookLoginComponent,GoogleSignInComponent],
   providers:    [ UserService ]
 })
 export class AccountModule { }
