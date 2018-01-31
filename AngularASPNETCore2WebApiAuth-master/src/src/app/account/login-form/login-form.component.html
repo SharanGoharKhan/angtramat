@@ -1,95 +1,91 @@
-<div class="row">
+<div style="margin:auto 0" class="row">
     <div style="margin-bottom:10rem;text-align:center;height:50vh;background: #353c46;" class="login-message">
-        <p style="padding-top:8rem;color:white;font-weight:normal;font-size:2rem">Welcome to your personlized Trabble Portal!</p>        
+        <p style="padding-top:8rem;color:white;font-weight:600;font-size:2rem">Welcome to your personlized Trabble Portal!</p>        
     </div>
 </div>
-  <div style="margin-top:-24rem" class="row">
-    <mat-card style="position:relative;margin-left: 30%;margin-right: 30%;border-radius: 3%;height: 37vh;" class="login-reg-form">
-        <div style="position: absolute;height: 17rem;width: 1px;background: gray;left: 48%;top: 36%;" class="divider">
-        </div>
-        <div style="text-align:center" class="row">
-            <div style="margin-left:2rem;padding-right:0;margin-right:0" class="col-md-5 col-lg-5">
-                <div>
-                    <button style="border-radius:3%;width:100%;font-weight: 600;color: white;background:orange" mat-raised-button>Create an Account</button>
-                </div>
-                <!-- <div style="cursor:pointer;border-radius: 3%;position: absolute;width: 67%;height: 17%;background: #4c8efb;top: 22%;left: 27%;" class="mat-elevation-z6 google-wrapper-1">
-                    <p style="font-weight: bold;color:white;margin-left: 23%;margin-top: 10%;">Sign up with Google</p>    
-                </div> -->
-                <div style="margin-left: 23%;margin-top:11%" class="google-sign-in-button-wrap">
-                    <button (click)="signIn('google')">google</button>
-                    <!-- <google-signin [width]="40" 
-                    [clientId]="googleClientId"
-                    (googleSignInSuccess)="onGoogleSignInSuccess($event)">
-                    </google-signin> -->
-                </div>
-                <div style="margin-top:1rem;color:gray">
-                    <h3>Or</h3>
-                </div>
-                <form style="margin-top:2rem" #f="ngForm" novalidate (ngSubmit)="login(f)">
-                    <div class="form-group">
-                        <mat-form-field style="width:85%">
-                            <input matInput id="email" type="text" required name="email" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                    <mat-form-field style="width:85%">
-                        <input matInput type="password" class="form-control" id="password" required name="password" placeholder="Password" ngModel>
-                    </mat-form-field>
-                    </div>          
-            
-                    <div class="form-group">
-                        <button style="background-color:orange;border-radius:3%;font-weight: 600;color: white;width:85%;height:3rem" mat-raised-button type="submit" [disabled]="f.invalid || isRequesting">Sign Up</button>
-                        <app-spinner [isRunning]="isRequesting"></app-spinner> 
-                    </div>
-            
-                    <div *ngIf="errors" class="alert alert-danger" role="alert">
-                        <strong>Oops!</strong> {{errors}}
-                    </div> 
-                </form>
+<div style="display:flex;flex-direction:row;justify-content:center;margin: auto 0;margin-top:-24rem" class="row">
+<mat-card style="box-sizing: content-box;max-width: 1200px;position:relative;border-radius: 3%" class="login-reg-form">
+    <div style="flex-direction: row;display: flex;justify-content: center;text-align:center" class="row">
+        <div style="margin-left:2rem;padding-right:0;margin-right:0" class="col-sm-6 col-md-6 col-lg-6">
+            <div>
+                <button style="display: flex;flex-direction: row;justify-content: space-evenly;border-radius:3%;width:100%;font-weight: 600;color: white;background:orange" mat-raised-button>Create an Account</button>
             </div>
-            <div style="padding-left:0;margin-left:0" class="col-md-5 col-lg-5">
+            <div (click)="signIn('google')" style="flex-direction:row;justify-content:space-evenly;display:flex;cursor:pointer;margin:2rem;border-radius:3%;width:85%;background:#4c8efb;padding-top: 0.3rem;padding-bottom: .3rem;" class="mat-elevation-z6 row">
                 <div>
-                    <button style="border-radius:5%;width:100%;font-weight: 600;color: white;background:orange" mat-raised-button>Existing Account</button>
+                    <img style="width:3rem" src="../assets/img/google_logo.jpg" alt="google_logo">
                 </div>
-                <div style="margin-left: 23%;margin-top:11%" class="google-sign-in-button-wrap">
-                    <button (click)="signIn('google')">google</button>
-                    <!-- <google-signin [width]="40" 
-                    [clientId]="googleClientId"
-                    (googleSignInSuccess)="onGoogleSignInSuccess($event)">
-                    </google-signin> -->
+                <div style="display: flex;align-items: center;">
+                    <p style="font-weight: 600;color:white;">Sign up with Google</p>
                 </div>
-                <div style="position:absolute;" class="google-wrapper">
-
-                </div>
-                <div style="margin-top:1rem;color:gray">
-                    <h3>Or</h3>
-                </div>
-                <form style="margin-top:2rem" #f="ngForm" novalidate (ngSubmit)="login(f)">
-                    <div class="form-group">
-                        <mat-form-field style="width:85%">
-                            <input matInput id="email" type="text" required name="email" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                    <mat-form-field style="width:85%">
-                        <input matInput type="password" class="form-control" id="password" required name="password" placeholder="Password" ngModel>
-                    </mat-form-field>
-                    </div>          
-            
-                    <div class="form-group">
-                        <button mat-raised-button style="background-color:orange;border-radius:3%;font-weight: 600;color: white;width:85%;height:3rem" type="submit" [disabled]="f.invalid || isRequesting">Log In</button>
-                        <app-spinner [isRunning]="isRequesting"></app-spinner> 
-                    </div>
-            
-                    <div *ngIf="errors" class="alert alert-danger" role="alert">
-                        <strong>Oops!</strong> {{errors}}
-                    </div> 
-                </form>
             </div>
+            <div style="margin-top:1rem;color:gray">
+                <h3>Or</h3>
+            </div>
+            <form style="margin-top:2rem" #f="ngForm" novalidate (ngSubmit)="login(f)">
+                <div class="form-group">
+                    <mat-form-field style="width:85%">
+                        <input matInput id="email" type="text" required name="email" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                <mat-form-field style="width:85%">
+                    <input matInput type="password" class="form-control" id="password" required name="password" placeholder="Password" ngModel>
+                </mat-form-field>
+                </div>          
+        
+                <div class="form-group">
+                    <button style="background-color:orange;border-radius:3%;font-weight: 600;color: white;width:85%;height:3rem" mat-raised-button type="submit" [disabled]="f.invalid || isRequesting">Sign Up</button>
+                    <app-spinner [isRunning]="isRequesting"></app-spinner> 
+                </div>
+        
+                <div *ngIf="errors" class="alert alert-danger" role="alert">
+                    <strong>Oops!</strong> {{errors}}
+                </div> 
+            </form>
         </div>
-    </mat-card>
-  </div>
-<div class="row">
+        <div style="align-self:center;height: 17rem;width: 1px;background: gray" class="divider">
+        </div>
+        <div style="padding-left:0;margin-left:0" class="col-sm-6 col-md-6 col-lg-6">
+            <div>
+                <button style="display: flex;flex-direction: row;justify-content: space-evenly;border-radius:5%;width:100%;font-weight: 600;color: white;background:orange" mat-raised-button>Existing Account</button>
+            </div>
+            <div (click)="signIn('google')" style="flex-direction:row;justify-content:space-evenly;display:flex;cursor:pointer;margin:2rem;border-radius:3%;width:85%;background:#4c8efb;padding-top: 0.3rem;padding-bottom: .3rem;" class="mat-elevation-z6 row">
+                <div>
+                    <img style="width:3rem" src="https://image.flaticon.com/teams/slug/google.jpg">
+                </div>
+                <div style="display: flex;align-items: center;">
+                    <p style="font-weight: 600;color:white;">Sign in with Google</p>
+                </div>
+            </div>
+            <div style="margin-top:1rem;color:gray">
+                <h3>Or</h3>
+            </div>
+            <form style="margin-top:2rem" #f="ngForm" novalidate (ngSubmit)="login(f)">
+                <div class="form-group">
+                    <mat-form-field style="width:85%">
+                        <input matInput id="email" type="text" required name="email" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                <mat-form-field style="width:85%">
+                    <input matInput type="password" class="form-control" id="password" required name="password" placeholder="Password" ngModel>
+                </mat-form-field>
+                </div>          
+        
+                <div class="form-group">
+                    <button mat-raised-button style="background-color:orange;border-radius:3%;font-weight: 600;color: white;width:85%;height:3rem" type="submit" [disabled]="f.invalid || isRequesting">Log In</button>
+                    <app-spinner [isRunning]="isRequesting"></app-spinner> 
+                </div>
+        
+                <div *ngIf="errors" class="alert alert-danger" role="alert">
+                    <strong>Oops!</strong> {{errors}}
+                </div> 
+            </form>
+        </div>
+    </div>
+</mat-card>
+</div>
+<div style="margin: auto 0" class="row">
     <div style="text-align:center;margin-top: -15rem;background: white;height: 66vh;" class="login-message-bottom">
         <img style="width: 35%;margin-top: 16rem;" src="https://scontent.fisb1-1.fna.fbcdn.net/v/t1.0-9/14022215_301912863489601_5128351650290991915_n.png?oh=1cc1bb10f1627645e2010e605218c2ad&oe=5AE14A9E">
     </div>

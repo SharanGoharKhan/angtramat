@@ -10,14 +10,15 @@ import { DashboardService } from './services/dashboard.service';
 
 import { AuthGuard } from '../auth.guard';
 import { SettingsComponent } from './settings/settings.component';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     routing,
-    SharedModule
+    SharedModule,
+    MatSidenavModule
   ],
   declarations: [RootComponent,HomeComponent, SettingsComponent],
   exports:      [ ],

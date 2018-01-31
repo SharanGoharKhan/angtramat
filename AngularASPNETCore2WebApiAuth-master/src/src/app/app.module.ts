@@ -23,13 +23,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
-import { GoogleService } from './shared/services/google.service';
 import { Angular2SocialLoginModule } from "angular2-social-login";
+import { PricingComponent } from './pricing/pricing.component';
+import { FeaturesComponent } from './features/features.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent    
+    HomeComponent,
+    PricingComponent,
+    FeaturesComponent    
   ],
   imports: [
     AccountModule,
@@ -47,7 +50,7 @@ import { Angular2SocialLoginModule } from "angular2-social-login";
   providers: [ConfigService, { 
     provide: XHRBackend, 
     useClass: AuthenticateXHRBackend
-  },GoogleService],
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,31 +1,8 @@
-<header>
-  <mat-toolbar style="position:fixed;background: #353c46;" class="mat-elevation-z6">
-    <nav style="width:100%">
-      <a class="mat-button" href="/">
-        <span class="mat-button-wrapper">
-          <img  style="width: 50%;"alt="logo" src="//res.cloudinary.com/hrscywv4p/image/upload/c_limit,fl_lossy,h_300,w_300,f_auto,q_auto/v1/1157957/Logo_FA-01_vlnryv.png">
-        </span>
-        <div class="mat-button-ripple mat-ripple"></div>
-        <div class="mat-button-focus-overlay"></div>
-      </a>
-      <a style="float:right;margin-top: 1rem;color:white;font-weight:600" class="mat-button">
-        <span class="mat-button-wrapper">
-          Log In/Signup
-        </span>
-        <div class="mat-button-ripple mat-ripple"></div><div class="mat-button-focus-overlay"></div>
-      </a>
-      <a style="float:right;margin-top: 1rem;color:white;font-weight:600" class="mat-button">
-        <span class="mat-button-wrapper">
-          Pricing
-        </span>
-        <div class="mat-button-ripple mat-ripple"></div><div class="mat-button-focus-overlay"></div>
-      </a>
-      <a style="float:right;margin-top: 1rem;color:white;font-weight:600" class="mat-button">
-        <span class="mat-button-wrapper">
-        Features
-        </span>
-        <div class="mat-button-ripple mat-ripple"></div><div class="mat-button-focus-overlay"></div>
-      </a>
-    </nav>
-  </mat-toolbar>
-</header>
+<mat-toolbar style="background-color:#353c46;height:10vh" class="mat-elevation-z6">
+    <span style="cursor:pointer" routerLink="/"><img style="width: 50%;"alt="logo" src="//res.cloudinary.com/hrscywv4p/image/upload/c_limit,fl_lossy,h_300,w_300,f_auto,q_auto/v1/1157957/Logo_FA-01_vlnryv.png"></span>
+    <div style="display:flex;justify-content:flex-end;width:100%" fxShow="true" fxHide.lt-md="true">
+      <a routerLink="/features" routerLinkActive="active" class="list-item" mat-button>Features</a>
+      <a routerLink="/pricing" routerLinkActive="active" class="list-item" mat-button>Pricing</a>
+      <a  routerLink="/login" routerLinkActive="active" class="list-item" mat-button>Log In/Signup</a>
+    </div>
+</mat-toolbar>

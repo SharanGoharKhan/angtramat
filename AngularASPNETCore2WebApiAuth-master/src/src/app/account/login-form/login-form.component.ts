@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Credentials } from '../../shared/models/credentials.interface';
 import { UserService } from '../../shared/services/user.service';
-import { GoogleService } from '../../shared/services/google.service';
 import { AuthService } from "angular2-social-login";
 
 @Component({
@@ -27,12 +26,9 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     public _auth: AuthService,
     private userService: UserService, 
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private googleService: GoogleService) { }
+    private activatedRoute: ActivatedRoute) { }
 
     ngOnInit() {
-    // Intialize the clientId
-    this.googleClientId = this.googleService.googleClientId;
     // subscribe to router event
     this.subscription = this.activatedRoute.queryParams.subscribe(
       (param: any) => {
@@ -64,11 +60,11 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   }
   signIn(provider){
     this.sub = this._auth.login(provider).subscribe(
-      (data) => {
-                  console.log(data);
-                  //user data 
-                  //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google) 
-                }
+      (data)=>{
+        console.log(data);
+        this.router.navigate(['/dashboard/home']);
+        //this.googleService.setIsSignedIn(true);
+      }
     )
   }
   logout(){
