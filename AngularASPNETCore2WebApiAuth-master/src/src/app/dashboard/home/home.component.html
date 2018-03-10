@@ -1,4 +1,124 @@
-<h1>Dashboard section</h1>
+<h2>{{portal_screen?.title}}</h2>
+<!-- <mat-accordion>
+        <mat-expansion-panel  (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-form-field>
+                <input matInput placeholder="First name">
+                </mat-form-field>
+            
+                <mat-form-field>
+                <input matInput placeholder="Age">
+                </mat-form-field>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+      
+          <mat-form-field>
+            <input matInput placeholder="First name">
+          </mat-form-field>
+      
+          <mat-form-field>
+            <input matInput placeholder="Age">
+          </mat-form-field>
+        </mat-expansion-panel>
+</mat-accordion> -->
+<form *ngIf="portal_screen?.columns" (ngSubmit)="add(f)" #f="ngForm">
+    <table style="width: 100%;max-width: 100%;">
+        <thead>
+            <tr>
+                <th *ngFor="let column of portal_screen?.columns">
+                    {{column.title}}
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td *ngFor="let itemCol of portal_screen?.columns" style="text-align:center"> 
+                    <mat-form-field>
+                        <input matInput name="{{itemCol?.bindingPropertyName}}" ngModel required>
+                    </mat-form-field> 
+                </td>
+                <td style="text-align:center"> 
+                    <button mat-button color="primary" type="submit" [disabled]="!f.valid"> ADD </button>
+                </td>
+            </tr>
+            <!-- <tr *ngFor="let items of binded_items_list" style="text-align:center">
+                <td *ngFor="let prop of generateArray(items)">
+                    <mat-form-field>
+                            <input disabled="{{!prop.canEdit}}" matInput value="{{prop.item_value}}">
+                    </mat-form-field>
+                </td>
+                <td>
+                    <button mat-button color="primary">Update</button>
+                </td>
+                <td>
+                    <button mat-button color="secondary">Delete</button>
+                </td> 
+            </tr>   -->
+        </tbody>    
+    </table>
+</form>
+
+
+<!-- <mat-accordion>
+        <mat-expansion-panel  (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-form-field>
+                <input matInput placeholder="First name">
+                </mat-form-field>
+            
+                <mat-form-field>
+                <input matInput placeholder="Age">
+                </mat-form-field>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+      
+          <mat-form-field>
+            <input matInput placeholder="First name">
+          </mat-form-field>
+      
+          <mat-form-field>
+            <input matInput placeholder="Age">
+          </mat-form-field>
+        </mat-expansion-panel>
+</mat-accordion> -->
+
+
+
+
+ <div *ngFor="let items of binded_items_list">
+    <mat-accordion>
+            <mat-expansion-panel  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title style="display: flex;justify-content: space-between;">
+                        <mat-form-field>
+                          <input matInput disabled="false" value="Age">
+                        </mat-form-field>
+                        <div *ngFor="let prop of generateArray(items)">
+                            <mat-form-field> 
+                                <input disabled="{{!prop.canEdit}}" matInput value="{{prop.item_value}}">
+                            </mat-form-field>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <button mat-button color="primary">Update</button>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <button mat-button color="secondary">Delete</button>
+                        </div> 
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-form-field>
+                <input matInput placeholder="Age">
+            </mat-form-field>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>  
 
  
  

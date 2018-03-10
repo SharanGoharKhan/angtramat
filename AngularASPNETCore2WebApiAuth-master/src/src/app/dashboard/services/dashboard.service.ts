@@ -10,10 +10,15 @@ import { Observable } from 'rxjs/Rx';
 
 // Add the RxJS Observable operators we need in this app.
 import '../../rxjs-operators';
+import { PortalScreen } from '../../../clientportal/model/portalScreen';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 
 export class DashboardService extends BaseService {
+
+  private portal_screen_source = new Subject<PortalScreen>(); 
+  public portal_screen_obs$ = this.portal_screen_source.asObservable();
 
   baseUrl: string = ''; 
 
@@ -32,4 +37,10 @@ export class DashboardService extends BaseService {
       .map(response => response.json())
       .catch(this.handleError);
   }  
+
+  setPortalScreen(portalScreen: PortalScreen) {
+    console.log("setPortalScreen")
+    this.portal_screen_source.next(portalScreen);
+  }
+
 }

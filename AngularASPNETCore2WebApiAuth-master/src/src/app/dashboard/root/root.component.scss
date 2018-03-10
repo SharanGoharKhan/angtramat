@@ -6,10 +6,17 @@
       height: 90vh;
       flex-direction: column;
       justify-content: space-between;
-      background-color: orange;
+      background-color: orange; 
+      mat-sidenav-container {
+        height: inherit;
+      }
+      mat-list-item {
+        cursor: pointer;
+      }
     }
     .dashboard {
+      padding-top: 15px;
       flex: 1;
-      background-color: greenyellow;
+      // background-color: greenyellow;
     }
   }

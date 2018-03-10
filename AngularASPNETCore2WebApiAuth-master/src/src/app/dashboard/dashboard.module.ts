@@ -11,6 +11,10 @@ import { DashboardService } from './services/dashboard.service';
 import { AuthGuard } from '../auth.guard';
 import { SettingsComponent } from './settings/settings.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
+import { MatInputModule, MatButtonModule } from '@angular/material';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -18,7 +22,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     FormsModule,
     routing,
     SharedModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatInputModule,
+    MatButtonModule,
+    MatExpansionModule
   ],
   declarations: [RootComponent,HomeComponent, SettingsComponent],
   exports:      [ ],

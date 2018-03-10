@@ -1,0 +1,17 @@
+export * from './account.service';
+import { AccountService } from './account.service';
+export * from './dropDownOption.service';
+import { DropDownOptionService } from './dropDownOption.service';
+export * from './files.service';
+import { FilesService } from './files.service';
+export * from './notes.service';
+import { NotesService } from './notes.service';
+export * from './portalScreen.service';
+import { PortalScreenService } from './portalScreen.service';
+export * from './portalScreenColumn.service';
+import { PortalScreenColumnService } from './portalScreenColumn.service';
+export * from './profiles.service';
+import { ProfilesService } from './profiles.service';
+export * from './sidebarItem.service';
+import { SidebarItemService } from './sidebarItem.service';
+export const APIS = [AccountService, DropDownOptionService, FilesService, NotesService, PortalScreenService, PortalScreenColumnService, ProfilesService, SidebarItemService];
