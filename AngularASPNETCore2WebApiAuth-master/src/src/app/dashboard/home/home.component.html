@@ -1,3 +1,6 @@
+<div *ngIf="loading" style="display:flex;justify-content:center">
+    <mat-spinner></mat-spinner>
+</div>
 <h2>{{portal_screen?.title}}</h2>
 <!-- <mat-accordion>
         <mat-expansion-panel  (opened)="panelOpenState = true"
@@ -23,45 +26,73 @@
           </mat-form-field>
         </mat-expansion-panel>
 </mat-accordion> -->
-<form *ngIf="portal_screen?.columns" (ngSubmit)="add(f)" #f="ngForm">
-    <table style="width: 100%;max-width: 100%;">
-        <thead>
+<!-- <div>
+    <div>
+        <div *ngFor="let column of portal_screen?.columns">
+            <h3>{{column.title}}</h3>
+        </div>
+        <div>
+            <h3>Actions</h3>
+        </div>
+    </div>
+    <div>
+        <div *ngFor="let itemCol of portal_screen?.columns">
+            <mat-form-field>
+                <input matInput name="{{itemCol?.bindingPropertyName}}" ngModel required>
+            </mat-form-field> 
+        </div>
+        <div>
+            <button mat-button color="primary"> ADD </button>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<table style="width: 100%;max-width: 100%;">
+    <thead>
+        <tr>
+            <th *ngFor="let column of portal_screen?.columns">
+                {{column.title}}
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
             <tr>
-                <th *ngFor="let column of portal_screen?.columns">
-                    {{column.title}}
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td *ngFor="let itemCol of portal_screen?.columns" style="text-align:center"> 
+                <td *ngFor="let itemCol of portal_screen?.columns"> 
                     <mat-form-field>
-                        <input matInput name="{{itemCol?.bindingPropertyName}}" ngModel required>
+                        <input matInput>
                     </mat-form-field> 
                 </td>
-                <td style="text-align:center"> 
-                    <button mat-button color="primary" type="submit" [disabled]="!f.valid"> ADD </button>
+                <td> 
+                    <button mat-button color="primary" (click)="add(itemCol)"> ADD </button>
                 </td>
             </tr>
-            <!-- <tr *ngFor="let items of binded_items_list" style="text-align:center">
-                <td *ngFor="let prop of generateArray(items)">
-                    <mat-form-field>
-                            <input disabled="{{!prop.canEdit}}" matInput value="{{prop.item_value}}">
-                    </mat-form-field>
-                </td>
-                <td>
-                    <button mat-button color="primary">Update</button>
-                </td>
-                <td>
-                    <button mat-button color="secondary">Delete</button>
-                </td> 
-            </tr>   -->
-        </tbody>    
-    </table>
-</form>
+        <tr *ngFor="let items of binded_items_list">
+            <td *ngFor="let prop of generateArray(items)">
+                <input value="{{prop.item_value}}"><!-- TODO comment disabled=prop.?canEdit not working and matInput(material input field doesn't work either) is not working as well -->
+            </td>
+            <td>
+                <button mat-button (click)="edit(items)" color="primary">Update</button>
+            </td>
+            <td>
+                <button mat-button (click)="delete(items)" color="secondary">Delete</button>
+            </td> 
+        </tr>
+    </tbody>    
+</table>
 
 
 <!-- <mat-accordion>
@@ -92,35 +123,54 @@
 
 
 
- <div *ngFor="let items of binded_items_list">
-    <mat-accordion>
-            <mat-expansion-panel  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title style="display: flex;justify-content: space-between;">
-                        <mat-form-field>
-                          <input matInput disabled="false" value="Age">
-                        </mat-form-field>
-                        <div *ngFor="let prop of generateArray(items)">
-                            <mat-form-field> 
-                                <input disabled="{{!prop.canEdit}}" matInput value="{{prop.item_value}}">
-                            </mat-form-field>
-                        </div>
-                        <div style="display: flex;align-items: center;">
-                            <button mat-button color="primary">Update</button>
-                        </div>
-                        <div style="display: flex;align-items: center;">
-                            <button mat-button color="secondary">Delete</button>
-                        </div> 
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-form-field>
-                <input matInput placeholder="Age">
-            </mat-form-field>
-        </mat-expansion-panel>
-    </mat-accordion>
-</div>  
+ <!-- <div *ngFor="let items of binded_items_list">
+        <div class="accordian">
+            <div *ngFor="let prop of generateArray(items)">
+                <mat-form-field> 
+                    <input disabled="{{!prop.canEdit}}" matInput value="{{prop.item_value}}">
+                </mat-form-field>
+            </div>
+            <div style="display: flex;align-items: center;">
+                <button mat-button color="primary">Update</button>
+            </div>
+            <div style="display: flex;align-items: center;">
+                <button mat-button color="secondary">Delete</button>
+            </div>
+        </div>
+        <div class="panel">
+            <p>Lorem ipsum...</p>
+        </div>
+</div>   -->
 
- 
+<!-- 
+<div class="accordion">
+        <mat-form-field>
+                <input matInput value="Something">
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput value="Something">
+        </mat-form-field>
+        <mat-form-field>
+                <input matInput value="Something">
+        </mat-form-field>
+        <button mat-button color="primary">Update</button>
+        <button mat-button color="secondary">Delete</button>
+</div>
+<div class="panel">
+    <mat-form-field>
+            <input matInput value="Something">
+    </mat-form-field>
+</div>
+
+<button class="accordion">Section 2</button>
+<div class="panel">
+  <p>Lorem ipsum...</p>
+</div>
+
+<button class="accordion">Section 3</button>
+<div class="panel">
+  <p>Lorem ipsum...</p>
+</div> -->
  
  
   

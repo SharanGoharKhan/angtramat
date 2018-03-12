@@ -13,11 +13,13 @@ import { RequestOptions } from '@angular/http';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  panelOpenState: boolean = false;
+  // panelOpenState: boolean = false;
+  input_model;
   portal_screen: PortalScreen;
   portal_screen_items:any;
   homeDetails: HomeDetails;
   binded_items_list = [];
+  loading = false;
   defaultHeaders = new HttpHeaders();
   constructor(
     private dashboardService: DashboardService,
@@ -25,16 +27,19 @@ export class HomeComponent implements OnInit {
     private http: HttpClient ) { }
 
   ngOnInit() {
+    // this.initializeAccordian()
     // content list will populate it by getting get on this. https://trabblebackendclientportalapi.azurewebsites.net/api/PortalScreen 
     this.dashboardService.portal_screen_obs$.subscribe(portal_screen => {
+      this.binded_items_list = []
       this.ngZone.run(()=>{
-        console.log("Portal Screen from home")
-        console.log(portal_screen)
+        this.loading = true
+        this.sortByAttr(portal_screen['columns'],'order')
         this.portal_screen = portal_screen;
         this.http.get(this.portal_screen.loadContentUrl)
         .subscribe(
           res => {
             this.portal_screen_items = res;
+            console.log("Items loaded from portal screen")
             console.log(res)
             for(var key in this.portal_screen_items) {
               let single_item = this.portal_screen_items[key];
@@ -55,10 +60,32 @@ export class HomeComponent implements OnInit {
               this.binded_items_list.push(json_data_temp)
             }
             console.log(this.binded_items_list)
+            this.loading = false;
           })
       })
     })
   }
+  // initializeAccordian() {
+  //   var acc = document.getElementsByClassName("accordion");
+  //   var i;
+
+  //   for (i = 0; i < acc.length; i++) {
+  //       acc[i].addEventListener("click", function() {
+  //           /* Toggle between adding and removing the "active" class,
+  //           to highlight the button that controls the panel */
+  //           this.classList.toggle("active");
+
+  //           /* Toggle between hiding and showing the active panel */
+  //           var panel = this.nextElementSibling;
+  //           if (panel.style.display === "block") {
+  //               panel.style.display = "none";
+  //           } else {
+  //               panel.style.display = "block";
+  //           }
+  //       });
+  //   }
+
+  // }
   generateArray(obj){
     let keys_of_object = Object.keys(obj)
     let list_of_items = []
@@ -71,7 +98,9 @@ export class HomeComponent implements OnInit {
             break
         }
       }
-    } 
+    }
+    console.log("Look here")
+    console.log(list_of_items)
     return (this.sortByAttr(list_of_items,'order')) 
  }
  sortByAttr(array,key) {
@@ -81,31 +110,35 @@ export class HomeComponent implements OnInit {
     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
   })
  }
-  add(form:NgForm) {
+  add(form:any) {
+    console.log(form)
     //form it into dynamic object
     //send the object
     //post on the same url https://trabblebackendclientportalapi.azurewebsites.net/api/PortalScreen
-    this.http.post(this.portal_screen.loadContentUrl,JSON.stringify(form.value),{ headers: this.defaultHeaders.append('Content-Type', 'application/json')})
-    .subscribe(
-      res => {
-        console.log(res)
-      })
+    // this.http.post(this.portal_screen.loadContentUrl,JSON.stringify(form.value),{ headers: this.defaultHeaders.append('Content-Type', 'application/json')})
+    // .subscribe(
+    //   res => {
+    //     console.log(res)
+    //   })
+    console.log("Add called")
   }
   //edit function
   //
-  // edit(form:NgForm) {
-  //   console.log(form.value)
+  edit(form:any) {
+    console.log("edit called")
+    console.log(form.value)
   //   //form it into dynamic object
   //   //send the object
   //   //patch on the same url https://trabblebackendclientportalapi.azurewebsites.net/api/PortalScreen
-  // }
+  }
   //delete
-  // delete(form:NgForm) {
+  delete(form:any) {
+    console.log("delete called")
     //delete will take a single id as a single string
-  //   console.log(form.value)
+    console.log(form.value)
   //   //form it into dynamic object
   //   //send the object
   //   //delete on the same url https://trabblebackendclientportalapi.azurewebsites.net/api/PortalScreen/{itemId}
-  // }
+  }
 
 }

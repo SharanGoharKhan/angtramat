@@ -15,6 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import { MatInputModule, MatButtonModule } from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatListModule,
     MatInputModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   declarations: [RootComponent,HomeComponent, SettingsComponent],
   exports:      [ ],
