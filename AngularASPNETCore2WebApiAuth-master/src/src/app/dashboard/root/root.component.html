@@ -4,7 +4,9 @@
       <mat-sidenav mode="side" opened></mat-sidenav>
       <mat-sidenav-content> 
         <mat-list role="list" (click)="sideBarItemClick(side_bar_item)" *ngFor="let side_bar_item of side_bar_items">
-          <mat-list-item role="listitem">{{side_bar_item.title}}</mat-list-item>
+          <mat-list-item role="listitem">
+            <mat-icon mat-list-icon [svgIcon]="side_bar_item.title"></mat-icon>
+            <h4 mat-line>{{side_bar_item.title}}</h4></mat-list-item>
         </mat-list>          
       </mat-sidenav-content>
     </mat-sidenav-container>

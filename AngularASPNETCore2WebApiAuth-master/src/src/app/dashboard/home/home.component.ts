@@ -6,7 +6,9 @@ import { PortalScreen } from '../../../clientportal/model/portalScreen';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
-import {MatInput} from '@angular/material'
+import {MatInput, MatIcon} from '@angular/material'
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { FormComponent } from '../form/form.component';
 
 @Component({
   selector: 'app-home',
@@ -22,10 +24,14 @@ export class HomeComponent implements OnInit {
   binded_items_list = [];
   loading = false;
   defaultHeaders = new HttpHeaders();
+  animal: string;
+  name: string;
+
   constructor(
     private dashboardService: DashboardService,
     private ngZone: NgZone,
-    private http: HttpClient ) { }
+    private http: HttpClient,
+    public dialog: MatDialog ) { }
 
   ngOnInit() {
     // this.initializeAccordian()
@@ -61,6 +67,7 @@ export class HomeComponent implements OnInit {
               this.binded_items_list.push(json_data_temp)
             }
             console.log(this.binded_items_list)
+            console.log(this.portal_screen, 'asdf')
             this.loading = false;
           })
       })
@@ -131,6 +138,17 @@ export class HomeComponent implements OnInit {
   //   //form it into dynamic object
   //   //send the object
   //   //patch on the same url https://trabblebackendclientportalapi.azurewebsites.net/api/PortalScreen
+  }
+  openDialog(): void {
+    let dialogRef = this.dialog.open(FormComponent, {
+      width: '450px',
+      data: { fields: this.portal_screen }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
   }
   //delete
   delete(form:any) {

@@ -80,12 +80,11 @@
                     <button mat-button color="primary" (click)="add(itemCol)"> ADD </button>
                 </td>
             </tr>
-        <tr *ngFor="let items of binded_items_list;let itemsIndex = index;trackBy:trackByIndex;">
-            <td *ngFor="let prop of generateArray(items);let arrIndex = index;trackBy:trackByIndex;">
-                <mat-form-field class="example-full-width">
-                    <input [disabled]="!prop.canEdit" [(ngModel)]="generateArray(items)[arrIndex].item_value" matInput><!-- TODO comment disabled=prop.?canEdit not working and matInput(material input field doesn't work either) is not working as well -->
-                </mat-form-field>
-                <!-- {{generateArray(items)[arrIndex].item_value}} -->
+        <tr *ngFor="let items of binded_items_list">
+            <td *ngFor="let prop of generateArray(items)">
+                <!-- <mat-form-field class="example-full-width"> -->
+                    <input [disabled]="!prop.canEdit" value="{{prop.item_value}}"><!-- TODO comment disabled=prop.?canEdit not working and matInput(material input field doesn't work either) is not working as well -->
+                <!-- </mat-form-field> -->
             </td>
             <td>
                 <button mat-button (click)="edit(items)" color="primary">Update</button>
@@ -96,7 +95,9 @@
         </tr>
     </tbody>    
 </table>
-
+<button class="addButton" mat-fab color="accent" (click)="openDialog()">
+    <mat-icon aria-label="Add New">add</mat-icon>
+</button>
 
 <!-- <mat-accordion>
         <mat-expansion-panel  (opened)="panelOpenState = true"

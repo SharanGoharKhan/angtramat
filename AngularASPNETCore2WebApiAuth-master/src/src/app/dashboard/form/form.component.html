@@ -1,0 +1,11 @@
+<mat-card *ngIf="data.fields">
+  <mat-card-title>Add New</mat-card-title>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div *ngFor="let field of data.fields.columns">
+        <mat-form-field>
+            <input [disabled]="!field.canEdit" [placeholder]="field.bindingPropertyName" matInput>
+        </mat-form-field>
+    </div>
+  </mat-card-content>
+</mat-card>
