@@ -73,11 +73,11 @@
             <tr>
                 <td *ngFor="let itemCol of portal_screen?.columns"> 
                     <mat-form-field>
-                        <input matInput>
+                        <input matInput [(ngModel)]="add_input_model[itemCol.bindingPropertyName]">
                     </mat-form-field> 
                 </td>
                 <td> 
-                    <button mat-button color="primary" (click)="add(itemCol)"> ADD </button>
+                    <button mat-button color="primary" (click)="add()"> ADD </button>
                 </td>
             </tr>
         <tr *ngFor="let items of binded_items_list">

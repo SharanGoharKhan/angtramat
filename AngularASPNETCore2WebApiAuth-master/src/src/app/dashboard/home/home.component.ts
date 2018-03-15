@@ -16,8 +16,7 @@ import { FormComponent } from '../form/form.component';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  // panelOpenState: boolean = false;
-  input_model;
+  add_input_model = {}
   portal_screen: PortalScreen;
   portal_screen_items:any;
   homeDetails: HomeDetails;
@@ -107,8 +106,8 @@ export class HomeComponent implements OnInit {
         }
       }
     }
-    console.log("Look here")
-    console.log(list_of_items)
+    // console.log("Look here")
+    // console.log(list_of_items)
     return (this.sortByAttr(list_of_items,'order')) 
  }
  sortByAttr(array,key) {
@@ -119,7 +118,8 @@ export class HomeComponent implements OnInit {
   })
  }
   add(form:any) {
-    console.log(form)
+    console.log("input model")
+    console.log(this.add_input_model)
     //form it into dynamic object
     //send the object
     //post on the same url https://trabblebackendclientportalapi.azurewebsites.net/api/PortalScreen
