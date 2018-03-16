@@ -73,21 +73,21 @@
             <tr>
                 <td *ngFor="let itemCol of portal_screen?.columns"> 
                     <mat-form-field>
-                        <input matInput>
+                        <input matInput [(ngModel)]="add_input_model[itemCol.bindingPropertyName]">
                     </mat-form-field> 
                 </td>
                 <td> 
-                    <button mat-button color="primary" (click)="add(itemCol)"> ADD </button>
+                    <button mat-button color="primary" (click)="add()"> ADD </button>
                 </td>
             </tr>
-        <tr *ngFor="let items of binded_items_list">
-            <td *ngFor="let prop of generateArray(items)">
-                <!-- <mat-form-field class="example-full-width"> -->
-                    <input [disabled]="!prop.canEdit" value="{{prop.item_value}}"><!-- TODO comment disabled=prop.?canEdit not working and matInput(material input field doesn't work either) is not working as well -->
-                <!-- </mat-form-field> -->
+        <tr *ngFor="let items of table_data_items;let j=index">
+            <td *ngFor="let prop of items;let i=index">
+                <mat-form-field>
+                    <input [disabled]="!prop.canEdit" matInput [(ngModel)]="edit_input_model[j][i][prop.bindingPropertyName]">
+                </mat-form-field>    
             </td>
             <td>
-                <button mat-button (click)="edit(items)" color="primary">Update</button>
+                <button mat-button (click)="edit(j)" color="primary">Update</button>
             </td>
             <td>
                 <button mat-button (click)="delete(items)" color="secondary">Delete</button>
