@@ -77,7 +77,7 @@
                     </mat-form-field> 
                 </td>
                 <td> 
-                    <button mat-button color="primary" (click)="add()"> ADD </button>
+                    <button mat-button class="addButton" color="primary" (click)="add()"> ADD </button>
                 </td>
             </tr>
         <tr *ngFor="let items of table_data_items;let j=index">
@@ -87,10 +87,10 @@
                 </mat-form-field>    
             </td>
             <td>
-                <button mat-button (click)="edit(j)" color="primary">Update</button>
+                <button mat-raised-button color="primary" (click)="edit(j)">Update</button>
             </td>
             <td>
-                <button mat-button (click)="delete(items)" color="secondary">Delete</button>
+                <button mat-raised-button color="warn" (click)="delete(items)">Delete</button>
             </td> 
         </tr>
     </tbody>    
