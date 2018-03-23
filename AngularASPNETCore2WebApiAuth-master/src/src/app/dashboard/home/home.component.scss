@@ -28,3 +28,15 @@
     float: right;
     color: white;
 }
+.mat-expansion-panel-header-title {
+    justify-content: space-around;
+}
+.mat-expansion-panel-body {  
+    display: flex !important;
+    justify-content: space-around !important;
+}
+.space-around {
+    display: flex !important;
+    justify-content: space-around !important; 
+}
+

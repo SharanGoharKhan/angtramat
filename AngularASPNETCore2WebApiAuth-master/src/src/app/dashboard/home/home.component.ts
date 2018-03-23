@@ -179,10 +179,14 @@ export class HomeComponent implements OnInit {
       width: '450px',
       data: { fields: this.portal_screen }
     });
+    const sub = dialogRef.componentInstance.add.subscribe((formData) => {
+      this.add(formData)
+      // console.log(formData)
+    })
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
+      sub.unsubscribe();
     });
   }
   //delete

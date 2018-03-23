@@ -58,7 +58,7 @@
 
 
 
-<table style="width: 100%;max-width: 100%;">
+<!-- <table style="width: 100%;max-width: 100%;">
     <thead>
         <tr>
             <th *ngFor="let column of portal_screen?.columns">
@@ -97,33 +97,47 @@
 </table>
 <button class="addButton" mat-fab color="accent" (click)="openDialog()">
     <mat-icon aria-label="Add New">add</mat-icon>
-</button>
+</button> -->
 
-<!-- <mat-accordion>
+<div class="row" class="space-around" *ngIf="portal_screen?.upsertType === 'inline'">
+    <ng-container *ngFor="let itemCol of portal_screen?.columns"> 
+        <mat-form-field>
+            <input matInput [(ngModel)]="add_input_model[itemCol.bindingPropertyName]">
+        </mat-form-field> 
+    </ng-container>
+    <!-- <td>  -->
+        <button mat-button class="addButton" color="primary" (click)="add()"> ADD </button>
+    <!-- </td> -->
+</div>
+<mat-accordion>
         <mat-expansion-panel  (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false">
+        (closed)="panelOpenState = false" *ngFor="let items of table_data_items;let j=index">
           <mat-expansion-panel-header>
             <mat-panel-title>
-                <mat-form-field>
-                <input matInput placeholder="First name">
-                </mat-form-field>
-            
-                <mat-form-field>
-                <input matInput placeholder="Age">
-                </mat-form-field>
+                <ng-container *ngFor="let prop of items;let i=index" >
+                    <mat-form-field *ngIf="!prop.expandedViewOnly">
+                    <input [disabled]="!prop.canEdit" matInput [(ngModel)]="edit_input_model[j][i][prop.bindingPropertyName]">
+                    </mat-form-field>
+                </ng-container>
             </mat-panel-title>
           </mat-expansion-panel-header>
       
-          <mat-form-field>
-            <input matInput placeholder="First name">
-          </mat-form-field>
-      
-          <mat-form-field>
-            <input matInput placeholder="Age">
-          </mat-form-field>
+            <ng-container *ngFor="let prop of items;let i=index" >
+                <div class="space-around">
+                    <mat-form-field *ngIf="prop.expandedViewOnly">
+                    <input [disabled]="!prop.canEdit" matInput [(ngModel)]="edit_input_model[j][i][prop.bindingPropertyName]">
+                    </mat-form-field>
+                </div>
+            </ng-container>
+            <mat-action-row>
+                <button mat-raised-button color="primary" class="mr-1" (click)="edit(j)">Update</button>
+                <button mat-raised-button color="warn" (click)="delete(items)">Delete</button>
+            </mat-action-row>
         </mat-expansion-panel>
-</mat-accordion> -->
-
+</mat-accordion>
+<button class="addButton" *ngIf="portal_screen?.upsertType === 'dialog'" mat-fab color="accent" (click)="openDialog()">
+    <mat-icon aria-label="Add New">add</mat-icon>
+</button>
 
 
 

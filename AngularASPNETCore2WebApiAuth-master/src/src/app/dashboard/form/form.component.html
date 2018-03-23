@@ -4,11 +4,11 @@
   <mat-card-content>
     <div *ngFor="let field of data.fields.columns">
         <mat-form-field>
-            <input [disabled]="!field.canEdit" [placeholder]="field.bindingPropertyName" matInput>
+            <input [disabled]="!field.canEdit" [(ngModel)]="add_input_model[field.bindingPropertyName]" [placeholder]="field.bindingPropertyName" matInput>
         </mat-form-field>
     </div>
   </mat-card-content>
-  <button class="addButton" mat-fab color="accent" (click)="openDialog()">
+  <button class="addButton" mat-fab color="accent" (click)="onClickAdd()">
     <mat-icon aria-label="Add New">add</mat-icon>
   </button>
 </mat-card>
