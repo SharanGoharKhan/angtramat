@@ -1,113 +1,13 @@
 <div *ngIf="loading" style="display:flex;justify-content:center">
     <mat-spinner></mat-spinner>
 </div>
-<h2>{{portal_screen?.title}}</h2>
-<!-- <mat-accordion>
-        <mat-expansion-panel  (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-                <mat-form-field>
-                <input matInput placeholder="First name">
-                </mat-form-field>
-            
-                <mat-form-field>
-                <input matInput placeholder="Age">
-                </mat-form-field>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-      
-          <mat-form-field>
-            <input matInput placeholder="First name">
-          </mat-form-field>
-      
-          <mat-form-field>
-            <input matInput placeholder="Age">
-          </mat-form-field>
-        </mat-expansion-panel>
-</mat-accordion> -->
-<!-- <div>
-    <div>
-        <div *ngFor="let column of portal_screen?.columns">
-            <h3>{{column.title}}</h3>
-        </div>
-        <div>
-            <h3>Actions</h3>
-        </div>
-    </div>
-    <div>
-        <div *ngFor="let itemCol of portal_screen?.columns">
-            <mat-form-field>
-                <input matInput name="{{itemCol?.bindingPropertyName}}" ngModel required>
-            </mat-form-field> 
-        </div>
-        <div>
-            <button mat-button color="primary"> ADD </button>
-        </div>
-    </div>
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <table style="width: 100%;max-width: 100%;">
-    <thead>
-        <tr>
-            <th *ngFor="let column of portal_screen?.columns">
-                {{column.title}}
-            </th>
-            <th>
-                Actions
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-            <tr>
-                <td *ngFor="let itemCol of portal_screen?.columns"> 
-                    <mat-form-field>
-                        <input matInput [(ngModel)]="add_input_model[itemCol.bindingPropertyName]">
-                    </mat-form-field> 
-                </td>
-                <td> 
-                    <button mat-button class="addButton" color="primary" (click)="add()"> ADD </button>
-                </td>
-            </tr>
-        <tr *ngFor="let items of table_data_items;let j=index">
-            <td *ngFor="let prop of items;let i=index">
-                <mat-form-field>
-                    <input [disabled]="!prop.canEdit" matInput [(ngModel)]="edit_input_model[j][i][prop.bindingPropertyName]">
-                </mat-form-field>    
-            </td>
-            <td>
-                <button mat-raised-button color="primary" (click)="edit(j)">Update</button>
-            </td>
-            <td>
-                <button mat-raised-button color="warn" (click)="delete(items)">Delete</button>
-            </td> 
-        </tr>
-    </tbody>    
-</table>
-<button class="addButton" mat-fab color="accent" (click)="openDialog()">
-    <mat-icon aria-label="Add New">add</mat-icon>
-</button> -->
-
 <div class="row" class="space-around" *ngIf="portal_screen?.upsertType === 'inline'">
     <ng-container *ngFor="let itemCol of portal_screen?.columns"> 
         <mat-form-field>
             <input matInput [(ngModel)]="add_input_model[itemCol.bindingPropertyName]">
         </mat-form-field> 
     </ng-container>
-    <!-- <td>  -->
         <button mat-button class="addButton" color="primary" (click)="add()"> ADD </button>
-    <!-- </td> -->
 </div>
 <mat-accordion>
         <mat-expansion-panel  (opened)="panelOpenState = true"
@@ -131,64 +31,13 @@
             </ng-container>
             <mat-action-row>
                 <button mat-raised-button color="primary" class="mr-1" (click)="edit(j)">Update</button>
-                <button mat-raised-button color="warn" (click)="delete(items)">Delete</button>
+                <button mat-raised-button color="warn" (click)="delete(j)">Delete</button>
             </mat-action-row>
         </mat-expansion-panel>
 </mat-accordion>
 <button class="addButton" *ngIf="portal_screen?.upsertType === 'dialog'" mat-fab color="accent" (click)="openDialog()">
     <mat-icon aria-label="Add New">add</mat-icon>
 </button>
-
-
-
- <!-- <div *ngFor="let items of binded_items_list">
-        <div class="accordian">
-            <div *ngFor="let prop of generateArray(items)">
-                <mat-form-field> 
-                    <input disabled="{{!prop.canEdit}}" matInput value="{{prop.item_value}}">
-                </mat-form-field>
-            </div>
-            <div style="display: flex;align-items: center;">
-                <button mat-button color="primary">Update</button>
-            </div>
-            <div style="display: flex;align-items: center;">
-                <button mat-button color="secondary">Delete</button>
-            </div>
-        </div>
-        <div class="panel">
-            <p>Lorem ipsum...</p>
-        </div>
-</div>   -->
-
-<!-- 
-<div class="accordion">
-        <mat-form-field>
-                <input matInput value="Something">
-        </mat-form-field>
-        <mat-form-field>
-                <input matInput value="Something">
-        </mat-form-field>
-        <mat-form-field>
-                <input matInput value="Something">
-        </mat-form-field>
-        <button mat-button color="primary">Update</button>
-        <button mat-button color="secondary">Delete</button>
-</div>
-<div class="panel">
-    <mat-form-field>
-            <input matInput value="Something">
-    </mat-form-field>
-</div>
-
-<button class="accordion">Section 2</button>
-<div class="panel">
-  <p>Lorem ipsum...</p>
-</div>
-
-<button class="accordion">Section 3</button>
-<div class="panel">
-  <p>Lorem ipsum...</p>
-</div> -->
  
  
   
