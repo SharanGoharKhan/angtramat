@@ -13,6 +13,9 @@
       mat-list-item {
         cursor: pointer;
       }
+      .active {
+        background-color: rgb(170, 166, 166);
+      }
       mat-list :hover {
         background-color: rgb(231, 229, 229);
       }

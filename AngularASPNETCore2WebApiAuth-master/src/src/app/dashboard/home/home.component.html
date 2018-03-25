@@ -4,7 +4,7 @@
 <div class="row" class="space-around" *ngIf="portal_screen?.upsertType === 'inline'">
     <ng-container *ngFor="let itemCol of portal_screen?.columns"> 
         <mat-form-field>
-            <input matInput [(ngModel)]="add_input_model[itemCol.bindingPropertyName]">
+            <input matInput  [placeholder]="itemCol.bindingPropertyName" [(ngModel)]="add_input_model[itemCol.bindingPropertyName]">
         </mat-form-field> 
     </ng-container>
         <button mat-button class="addButton" color="primary" (click)="add()"> ADD </button>
@@ -21,14 +21,14 @@
                 </ng-container>
             </mat-panel-title>
           </mat-expansion-panel-header>
-      
-            <ng-container *ngFor="let prop of items;let i=index" >
-                <div class="space-around">
-                    <mat-form-field *ngIf="prop.expandedViewOnly">
-                    <input [disabled]="!prop.canEdit" matInput [(ngModel)]="edit_input_model[j][i][prop.bindingPropertyName]">
-                    </mat-form-field>
-                </div>
-            </ng-container>
+            <div class="space-around">
+                <ng-container *ngFor="let prop of items;let i=index" >
+                    
+                        <mat-form-field *ngIf="prop.expandedViewOnly">
+                        <input [disabled]="!prop.canEdit" matInput [(ngModel)]="edit_input_model[j][i][prop.bindingPropertyName]">
+                        </mat-form-field>
+                </ng-container>
+            </div>
             <mat-action-row>
                 <button mat-raised-button color="primary" class="mr-1" (click)="edit(j)">Update</button>
                 <button mat-raised-button color="warn" (click)="delete(j)">Delete</button>
