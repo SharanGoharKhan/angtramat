@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
   table_data_items = [];
   loading = false;
   defaultHeaders = new HttpHeaders();
-
   constructor(
     private dashboardService: DashboardService,
     private ngZone: NgZone,
@@ -31,10 +30,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() { 
     this.dashboardService.portal_screen_obs$.subscribe(portal_screen => {
+      this.loading = true
       this.binded_items_list = []
       this.table_data_items = []
       this.ngZone.run(()=>{
-        this.loading = true
         this.sortByAttr(portal_screen['columns'],'order')
         this.portal_screen = portal_screen;
         this.http.get(this.portal_screen.loadContentUrl)

@@ -10,8 +10,8 @@
         </mat-list>          
       </mat-sidenav-content>
     </mat-sidenav-container>
-  </nav>  
-  <main class="container dashboard">
+  </nav>
+  <main *ngIf="first_time_portal_screen != 2" class="container dashboard">
       <router-outlet></router-outlet>
   </main>
 </div>

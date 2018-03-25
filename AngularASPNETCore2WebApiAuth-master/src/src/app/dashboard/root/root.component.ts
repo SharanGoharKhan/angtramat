@@ -16,7 +16,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class RootComponent implements OnInit {
 
   private side_bar_items:SidebarItem[] = [];
-
+  first_time_portal_screen = 0
   constructor(
     private sidebarItemService: SidebarItemService,
     private portalScreenService: PortalScreenService,
@@ -44,9 +44,10 @@ export class RootComponent implements OnInit {
     })
   }
   sideBarItemClick(sidebarItem: PortalScreen) {
-    console.log("clicked")
-    console.log(sidebarItem);
     this.dashboardService.setPortalScreen(sidebarItem)
+    this.first_time_portal_screen += 1
+    if(this.first_time_portal_screen > 2)
+      this.first_time_portal_screen = 0
   }
 
 }
